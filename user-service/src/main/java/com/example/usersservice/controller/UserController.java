@@ -34,9 +34,9 @@ public class UserController {
         mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 
         UserDto userDto = mapper.map(user, UserDto.class);
-        userService.createUser(userDto);
+        UserDto returnUserDto = userService.createUser(userDto);
 
-        ResponseUser responseUser = mapper.map(userDto, ResponseUser.class);
+        ResponseUser responseUser = mapper.map(returnUserDto, ResponseUser.class);
         return new ResponseEntity(responseUser, HttpStatus.CREATED);
 //        return ResponseEntity.status(HttpStatus.CREATED).body(responseUser);
     }
