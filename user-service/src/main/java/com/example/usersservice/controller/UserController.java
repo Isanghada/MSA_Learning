@@ -8,6 +8,8 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -26,12 +28,12 @@ public class UserController {
         return env.getProperty("greeting.message");
     }
     @PostMapping("/users")
-    public String createUser(@RequestBody RequestUser user){
+    public ResponseEntity createUser(@RequestBody RequestUser user){
         ModelMapper mapper = new ModelMapper();
         mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 
         UserDto userDto = mapper.map(user, UserDto.class);
         userService.createUser(userDto);
-        return "Create user method is called";
+        return new ResponseEntity(HttpStatus.CREATED);
     }
 }
