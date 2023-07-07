@@ -3,6 +3,7 @@ package com.example.usersservice.controller;
 import com.example.usersservice.dto.UserDto;
 import com.example.usersservice.service.UserService;
 import com.example.usersservice.vo.RequestUser;
+import com.example.usersservice.vo.ResponseUser;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
@@ -28,12 +29,15 @@ public class UserController {
         return env.getProperty("greeting.message");
     }
     @PostMapping("/users")
-    public ResponseEntity createUser(@RequestBody RequestUser user){
+    public ResponseEntity<ResponseUser> createUser(@RequestBody RequestUser user){
         ModelMapper mapper = new ModelMapper();
         mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);
 
         UserDto userDto = mapper.map(user, UserDto.class);
         userService.createUser(userDto);
-        return new ResponseEntity(HttpStatus.CREATED);
+
+        ResponseUser responseUser = mapper.map(userDto, ResponseUser.class);
+        return new ResponseEntity(responseUser, HttpStatus.CREATED);
+//        return ResponseEntity.status(HttpStatus.CREATED).body(responseUser);
     }
 }
