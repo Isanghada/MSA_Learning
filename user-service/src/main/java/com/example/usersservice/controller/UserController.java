@@ -18,7 +18,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/")
+//@RequestMapping("/")
 public class UserController {
     private final Environment env;
     private final UserService userService;
@@ -29,7 +29,7 @@ public class UserController {
 
     @GetMapping("/welcome")
     public String welcome(){
-        return env.getProperty("greeting.message");
+        return "welcome page";
     }
     @PostMapping("/users")
     public ResponseEntity<ResponseUser> createUser(@RequestBody RequestUser user){
