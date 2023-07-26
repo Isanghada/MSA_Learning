@@ -28,10 +28,11 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                 .antMatchers("/actuator/**").permitAll()
                 .antMatchers("/h2-console/**").permitAll()
                 .antMatchers("/welcome").permitAll()
+                .antMatchers("/health_check").permitAll()
                 .antMatchers("/**")
-                .hasIpAddress("127.0.0.1") // IP 변경
-                .and()
-                .addFilter(getAuthenticationFilter());
+                    .hasIpAddress("127.0.0.1") // IP 변경
+                    .and()
+                    .addFilter(getAuthenticationFilter());
         http.headers().frameOptions().disable();    // h2 접근을 위해 적용.
     }
 
