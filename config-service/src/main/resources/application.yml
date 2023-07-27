@@ -8,4 +8,7 @@ spring:
     config:
       server:
         git:
-          uri: file:///Users/Isanghada/Desktop/IntelliJ/git-local-repo
+          uri: https://github.com/Isanghada/MSA_config_repo.git
+          # if private repository add command
+          # username: [your username]
+          # password: [your password]
