@@ -12,3 +12,14 @@ spring:
           # if private repository add command
           # username: [your username]
           # password: [your password]
+  rabbitmq:
+    host: 127.0.0.1
+    port: 5672
+    username: guest
+    password: guest
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh,health,beans,httptrace,busrefresh
