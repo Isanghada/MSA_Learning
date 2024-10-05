@@ -36,6 +36,11 @@ management:
       exposure:
         include: refresh,health,beans,httptrace,busrefresh
 
+# logging configuration
+logging:
+  level:
+    com.example.usersservice.client: DEBUG
+
 #token:
 #  expiration_time: 864000000 # 10 days
 #  secret: user_token
