@@ -22,6 +22,7 @@ public class KafkaProducer {
         }catch (JsonProcessingException e){
             e.printStackTrace();
         }
+        // 전달할 데이터 변환 후 전달
         kafkaTemplate.send(kafkaTopic, jsonInString);
         log.info("Kafka Producer send data from the Order microservice : " + orderDto);
         return orderDto;
