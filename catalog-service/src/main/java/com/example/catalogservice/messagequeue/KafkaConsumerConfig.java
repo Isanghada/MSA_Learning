@@ -1,4 +1,4 @@
-package com.example.catalogservice.config;
+package com.example.catalogservice.messagequeue;
 
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.common.serialization.StringDeserializer;

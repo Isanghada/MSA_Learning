@@ -1,4 +1,4 @@
-package com.example.catalogservice.service;
+package com.example.catalogservice.messagequeue;
 
 import com.example.catalogservice.entity.CatalogEntity;
 import com.example.catalogservice.repository.CatalogRepository;
