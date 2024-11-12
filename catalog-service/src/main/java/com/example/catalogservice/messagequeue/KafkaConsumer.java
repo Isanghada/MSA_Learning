@@ -30,8 +30,10 @@ public class KafkaConsumer {
         } catch (JsonProcessingException e) {
             e.printStackTrace();
         }
+//        log.info(map.toString());
+//        log.info("=======> : "+map.get("qty").getClass().getName()+", "+map.get("qty"));
         CatalogEntity entity = catalogRepository.findByProductId((String)map.get("productId"));
-        if(entity != null) entity.setStock(entity.getStock() - (Integer)map.get("gty"));
+        if(entity != null) entity.setStock(entity.getStock() - (Integer)map.get("qty"));
 
         catalogRepository.save(entity);
     }
