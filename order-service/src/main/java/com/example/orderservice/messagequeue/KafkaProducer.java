@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 public class KafkaProducer {
     private final KafkaTemplate<String, String> kafkaTemplate;
 
-    public OrderDto send(String kafkTopic, OrderDto orderDto){
+    public OrderDto send(String kafkaTopic, OrderDto orderDto){
         ObjectMapper mapper = new ObjectMapper();
         String jsonInString = "";
         try{
@@ -22,7 +22,7 @@ public class KafkaProducer {
         }catch (JsonProcessingException e){
             e.printStackTrace();
         }
-        kafkaTemplate.send(kafkTopic, jsonInString);
+        kafkaTemplate.send(kafkaTopic, jsonInString);
         log.info("Kafka Producer sned data from the Order microservice : " + orderDto);
         return orderDto;
     }
