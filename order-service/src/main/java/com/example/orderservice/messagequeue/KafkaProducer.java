@@ -23,7 +23,7 @@ public class KafkaProducer {
             e.printStackTrace();
         }
         kafkaTemplate.send(kafkaTopic, jsonInString);
-        log.info("Kafka Producer sned data from the Order microservice : " + orderDto);
+        log.info("Kafka Producer send data from the Order microservice : " + orderDto);
         return orderDto;
     }
 }
