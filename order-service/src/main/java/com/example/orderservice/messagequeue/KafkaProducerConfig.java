@@ -1,4 +1,4 @@
-package com.example.orderservice.config;
+package com.example.orderservice.messagequeue;
 
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;

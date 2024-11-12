@@ -1,4 +1,4 @@
-package com.example.orderservice.service;
+package com.example.orderservice.messagequeue;
 
 import com.example.orderservice.dto.OrderDto;
 import com.fasterxml.jackson.core.JsonProcessingException;
