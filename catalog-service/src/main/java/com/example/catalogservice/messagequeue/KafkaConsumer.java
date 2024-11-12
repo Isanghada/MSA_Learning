@@ -31,7 +31,7 @@ public class KafkaConsumer {
             e.printStackTrace();
         }
         CatalogEntity entity = catalogRepository.findByProductId((String)map.get("productId"));
-        entity.setStock(entity.getStock() - (Integer)map.get("gty"));
+        if(entity != null) entity.setStock(entity.getStock() - (Integer)map.get("gty"));
 
         catalogRepository.save(entity);
     }
