@@ -3,6 +3,7 @@ package com.example.orderservice.controller;
 import com.example.orderservice.dto.OrderDto;
 import com.example.orderservice.entity.OrderEntity;
 import com.example.orderservice.messagequeue.KafkaProducer;
+import com.example.orderservice.messagequeue.OrderProducer;
 import com.example.orderservice.service.OrderService;
 import com.example.orderservice.vo.RequestOrder;
 import com.example.orderservice.vo.ResponseOrder;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -25,6 +27,7 @@ import java.util.List;
 @RequestMapping("/order-service")
 public class OrderController {
     private final KafkaProducer kafkaProducer;
+    private final OrderProducer orderProducer;
     private final OrderService orderService;
     private final Environment env;
 
@@ -42,11 +45,20 @@ public class OrderController {
 
         OrderDto orderDto = modelMapper.map(orderDetails, OrderDto.class);
         orderDto.setUserId(userId);
-        OrderDto createDto = orderService.createOrder(orderDto);
-        ResponseOrder returnValue = modelMapper.map(createDto, ResponseOrder.class);
+
+        // jpa
+        // OrderDto createDto = orderService.createOrder(orderDto);
+        // ResponseOrder returnValue = modelMapper.map(createDto, ResponseOrder.class);
+
+        // kafka
+        // - orderId, totalPrice 입력!
+        orderDto.setOrderId(UUID.randomUUID().toString());
+        orderDto.setTotalPrice(orderDetails.getQty() * orderDetails.getUnitPrice());
+        ResponseOrder returnValue = modelMapper.map(orderDto, ResponseOrder.class);
 
         // Send an order to the Kafka
         kafkaProducer.send("example-order-topic", orderDto);
+        orderProducer.send("orders", orderDto);
 
         return ResponseEntity.status(HttpStatus.CREATED).body(returnValue);
     }
