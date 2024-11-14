@@ -47,9 +47,10 @@ public class OrderController {
         orderDto.setUserId(userId);
 
         // jpa
-        // OrderDto createDto = orderService.createOrder(orderDto);
-        // ResponseOrder returnValue = modelMapper.map(createDto, ResponseOrder.class);
+        OrderDto createDto = orderService.createOrder(orderDto);
+        ResponseOrder returnValue = modelMapper.map(createDto, ResponseOrder.class);
 
+        /*  CircuitBreaker, 모니터링 테스트를 위해 주석 처리!
         // kafka
         // - orderId, totalPrice 입력!
         orderDto.setOrderId(UUID.randomUUID().toString());
@@ -59,7 +60,7 @@ public class OrderController {
         // Send an order to the Kafka
         kafkaProducer.send("example-order-topic", orderDto);
         orderProducer.send("orders", orderDto);
-
+        */
         return ResponseEntity.status(HttpStatus.CREATED).body(returnValue);
     }
     
