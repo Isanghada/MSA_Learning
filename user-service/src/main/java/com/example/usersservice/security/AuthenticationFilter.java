@@ -1,4 +1,4 @@
-package com.example.usersservice.config;
+package com.example.usersservice.security;
 
 import com.example.usersservice.dto.UserDto;
 import com.example.usersservice.service.UserService;
