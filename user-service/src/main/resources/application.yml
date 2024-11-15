@@ -4,6 +4,14 @@ server:
 spring:
   application:
     name: user-service
+  # Distributed Tracking
+  zipkin:
+    base-uri: http://127.0.0.1:9411
+    enabled: true
+  sleuth:
+    sampler:
+      probability: 1.0
+  #########
   h2:
     console:
       enabled: true
