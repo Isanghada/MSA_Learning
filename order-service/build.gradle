@@ -39,7 +39,7 @@ dependencies {
     implementation 'org.springframework.kafka:spring-kafka'
     // 분산 추적(Distributed Tracking)!
     implementation 'org.springframework.cloud:spring-cloud-starter-sleuth'
-    implementation 'org.springframework.cloud:spring-cloud-starter-zipkin'
+    implementation 'org.springframework.cloud:spring-cloud-starter-zipkin:2.2.8.RELEASE'
     ////////////////
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
