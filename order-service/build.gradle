@@ -35,11 +35,15 @@ dependencies {
     implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
     implementation 'org.modelmapper:modelmapper:3.1.1'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.mariadb.jdbc:mariadb-java-client'
     implementation 'org.springframework.kafka:spring-kafka'
     // 분산 추적(Distributed Tracking)!
     implementation 'org.springframework.cloud:spring-cloud-starter-sleuth'
     implementation 'org.springframework.cloud:spring-cloud-starter-zipkin:2.2.8.RELEASE'
+    ////////////////
+    // micrometer : 지표 수집
+    implementation 'io.micrometer:micrometer-registry-prometheus'
     ////////////////
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
