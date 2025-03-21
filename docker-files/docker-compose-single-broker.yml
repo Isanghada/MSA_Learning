@@ -1,4 +1,4 @@
-version: "2"
+# version: "2"
 services:
   zookeeper:
     image: wurstmeister/zookeeper
@@ -24,4 +24,5 @@ services:
         ipv4_address: 172.18.0.101
 networks:
   my-network:
+    external: true
     name: ecommerce-network # 172.18.0.1 ~
