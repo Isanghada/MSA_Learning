@@ -57,11 +57,10 @@ public class OrderController {
         orderDto.setOrderId(UUID.randomUUID().toString());
         orderDto.setTotalPrice(orderDetails.getQty() * orderDetails.getUnitPrice());
         ResponseOrder returnValue = modelMapper.map(orderDto, ResponseOrder.class);
-
+        */
         // Send an order to the Kafka
         kafkaProducer.send("example-order-topic", orderDto);
-        orderProducer.send("orders", orderDto);
-        */
+        // orderProducer.send("orders", orderDto);
 
         log.info("After add orders data");
 
