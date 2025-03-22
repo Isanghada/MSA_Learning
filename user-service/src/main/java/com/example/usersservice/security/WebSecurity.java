@@ -4,6 +4,7 @@ import com.example.usersservice.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -29,8 +30,11 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                 .antMatchers("/h2-console/**").permitAll()
                 .antMatchers("/welcome").permitAll()
                 .antMatchers("/health_check").permitAll()
+                .antMatchers(HttpMethod.POST, "/users")
+                    .access("hasIpAddress('127.0.0.1') or hasIpAddress('172.18.0.0/16')")
+                    .anyRequest().permitAll()
                 .antMatchers("/**")
-                    .hasIpAddress("127.0.0.1") // IP 변경
+                    .access("hasIpAddress('127.0.0.1') or hasIpAddress('172.18.0.0/16')")
                     .and()
                     .addFilter(getAuthenticationFilter());
         http.headers().frameOptions().disable();    // h2 접근을 위해 적용.
