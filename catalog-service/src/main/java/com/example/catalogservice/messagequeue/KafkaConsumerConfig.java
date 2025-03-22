@@ -21,7 +21,7 @@ public class KafkaConsumerConfig {
         Map<String, Object> properties = new HashMap<>();
         // kafka container host
         // - 카프카 접속 주소
-        properties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "127.0.0.1:9092");
+        properties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, "172.18.0.101:9092");
         properties.put(ConsumerConfig.GROUP_ID_CONFIG, "consumerGroupId");
         // - Json 형식이므로 Key, Value로 구성되어있고 이를 원래대로 돌리기 위해 Deserializer 지정
         properties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
