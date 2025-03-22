@@ -32,7 +32,6 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
                 .antMatchers("/health_check").permitAll()
                 .antMatchers(HttpMethod.POST, "/users")
                     .access("hasIpAddress('127.0.0.1') or hasIpAddress('172.18.0.0/16')")
-                    .anyRequest().permitAll()
                 .antMatchers("/**")
                     .access("hasIpAddress('127.0.0.1') or hasIpAddress('172.18.0.0/16')")
                     .and()
